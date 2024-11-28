@@ -1,0 +1,16 @@
+﻿
+@model List<Article>
+
+<div class="col-lg-8">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-4">
+            <img src="@item.CoverImageUrl" style="width:auto; height:300px; object-fit: cover;" class="card-img-top" alt="Blog Kapak Fotoğrafı">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="text-muted">Kategori: @item.Category.CategoryName | Yazar: @item.AppUser.Name @item.AppUser.Surname | Oluşturma Tarihi: @item.CreatedDate.ToString("dd.MM.yyyy")</p>
+                <p class="card-text">@item.Detail.Substring(0, 200)...<a href="#">Devamını Oku</a></p>
+            </div>
+        </div>
+    }
+</div>
