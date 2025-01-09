@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace MyBlogNight.DataAccessLayer.EntityFramework
 {
-    public class EfSocialMediaDal : GenericRepository<SocialMedia>, ISocialMediaDal
+    public class EfSocialMediaDal : GenericRepository<SocialMedia>, ISocialMediaDal //ekleme,silme,güncelleme gibi işlemleri için sosyal medya sınıfına getirmiş oluyoruz.Böylece tek tek o metotları yazmak zorunda kalmıyoruz.
+
     {
         public EfSocialMediaDal(BlogContext context) : base(context)
         {

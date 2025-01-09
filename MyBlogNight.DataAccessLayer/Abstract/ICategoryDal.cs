@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBlogNight.DataAccessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface ICategoryDal : IGenericDal<Category> //bu category entity katmanından geliyor.
     {
     }
 }

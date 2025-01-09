@@ -15,12 +15,12 @@ namespace MyBlogNight.PresentationLayer.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index() //.Net core projesi olduğundan IActionresult
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(RegisterViewModel model)
+        public async Task<IActionResult> Index(RegisterViewModel model) //programlamada birden fazla işin yapılması async
         {
             AppUser appUser = new AppUser()
             {
@@ -30,17 +30,17 @@ namespace MyBlogNight.PresentationLayer.Controllers
                 UserName = model.Username,
                 ImageUrl = "test"
             };
-            var result = await _userManager.CreateAsync(appUser, model.Password);
+            var result = await _userManager.CreateAsync(appUser, model.Password);//password appuserla beraber kabul edilmedğinden böyle yaptık şifreyi şifreler formatta göndermek istiyorum.heşleyerek göndermesiiçin createasync içinde gönderiyoruz.
 
-            if (result.Succeeded)
+            if (result.Succeeded) //Kullanıcı başarılı bir şekilde kayıt işlemi gerçekleştirirse
             {
                 return RedirectToAction("Index", "Login");
             }
             else
             {
-                foreach (var item in result.Errors)
+                foreach (var item in result.Errors)//resulttan gelen hataları bana gösterir.
                 {
-                    ModelState.AddModelError("", item.Description);
+                    ModelState.AddModelError("", item.Description);//Modelstate bize formumuzdaki şeylerin doğru olup olmadığını belirler.
                 }
             }
             return View();

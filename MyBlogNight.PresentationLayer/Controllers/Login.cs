@@ -21,7 +21,7 @@ namespace MyBlogNight.PresentationLayer.Controllers
 		[HttpPost]
 		public async Task<IActionResult>Index(LoginViewModel model)
 		{
-			var result=await _signInManager.PasswordSignInAsync(model.Username,model.Password,false,true);
+			var result=await _signInManager.PasswordSignInAsync(model.Username,model.Password,false,true);//false:Beni hatırlar mısın,True:Kullanıcı her bir yanlış girdiği zaman bunun arka planda yanlış girdiği giriş sayısı sayılsın 
 			if (result.Succeeded)
 			{
 				return RedirectToAction("Index","Category");

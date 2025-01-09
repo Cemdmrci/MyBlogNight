@@ -20,14 +20,36 @@ namespace MyBlogNight.DataAccessLayer.EntityFramework
         public List<Article> ArticleListWithCategory()
         {
             var context = new BlogContext();
-            var values = context.Articles.Include(x => x.Category).ToList();
+            var values = context.Articles.Include(x => x.Category).ToList();//Articletablosunun içine category eklenmiş oldu
             return values;
         }
 
         public List<Article> ArticleListWithCategoryAndAppUser()
         {
             var context = new BlogContext();
-            var values = context.Articles.Include(x => x.Category).Include(y => y.AppUser).ToList();
+            var values = context.Articles.Include(x => x.Category).Include(y => y.AppUser).ToList();//Include ile hangi tabloyu hafızaya alacağımı söyler neye ihiyacım varsa onu çağırır.
+            return values;
+        }
+
+        public Article ArticleListWithCategoryAndAppUserByArticleId(int id)
+        {
+          var context = new BlogContext();
+            var values=context.Articles.Where(x=>x.ArticleId == id).Include(y=>y.Category).Include(z=>z.AppUser).FirstOrDefault();
+            return values;
+        }
+
+        public void ArticleViewCountIncrease(int id)
+        {
+            var context = new BlogContext();
+            var updatedValue = context.Articles.Find(id);
+            updatedValue.ArticleViewCount += 1;
+            context.SaveChanges();
+        }
+
+        public List<Article> GetArticlesByAppUserId(int id)
+        {
+            var context=new BlogContext();
+            var values=context.Articles.Where(x=>x.AppUserId==id).ToList();
             return values;
         }
     }

@@ -1,0 +1,9 @@
+﻿@model List<Comment>
+@{
+    Layout = null;
+}
+
+@foreach(var item in Model)
+{
+    <p>@item.CommentDetail - @item.ArticleId</p>
+}

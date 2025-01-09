@@ -26,7 +26,7 @@ namespace MyBlogNight.PresentationLayer.Controllers
         {
             var categoryList = _categoryService.TGetAll();
             List<SelectListItem> values1 = (from x in categoryList
-                                            select new SelectListItem
+                                            select new SelectListItem //SelectListItem bir dropdownlist açılacak ordan kategori seçilecek kategorinin textini kullanıcıya göstericem ıdsi veri tabanına yazılacak
                                             {
                                                 Text = x.CategoryName,
                                                 Value = x.CategoryId.ToString()
@@ -46,6 +46,11 @@ namespace MyBlogNight.PresentationLayer.Controllers
         {
             _articleService.TDelete(id);
             return RedirectToAction("ArticleList");
+        }
+        public IActionResult ArticleDetail(int id)
+        {
+            var value=_articleService.TArticleListWithCategoryAndAppUserByArticleId(id);
+            return View(value);
         }
     }
 }

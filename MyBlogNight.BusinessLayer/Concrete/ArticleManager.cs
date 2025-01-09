@@ -1,5 +1,6 @@
 ﻿using MyBlogNight.BusinessLayer.Abstract;
 using MyBlogNight.DataAccessLayer.Abstract;
+using MyBlogNight.DataAccessLayer.EntityFramework;
 using MyBlogNight.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,14 @@ namespace MyBlogNight.BusinessLayer.Concrete
             _articleDal = articleDal;
         }
 
-        public List<Article> TArticleListWithCategory()
-        {
-            return _articleDal.ArticleListWithCategory();
-        }
-
         public List<Article> TArticleListWithCategoryAndAppUser()
         {
             return _articleDal.ArticleListWithCategoryAndAppUser();
+        }
+
+        public List<Article> TArticleListWithCategory()
+        {
+            return _articleDal.ArticleListWithCategory();
         }
 
         public void TDelete(int id)
@@ -51,6 +52,21 @@ namespace MyBlogNight.BusinessLayer.Concrete
         public void TUpdate(Article entity)
         {
             _articleDal.Update(entity);
+        }
+
+        public Article TArticleListWithCategoryAndAppUserByArticleId(int id)
+        {
+            return _articleDal.ArticleListWithCategoryAndAppUserByArticleId(id);
+        }
+
+        public void TArticleViewCountIncrease(int id)
+        {
+            _articleDal.ArticleViewCountIncrease(id);
+        }
+
+        public List<Article> TGetArticlesByAppUserId(int id)
+        {
+            return _articleDal.GetArticlesByAppUserId(id);
         }
     }
 }

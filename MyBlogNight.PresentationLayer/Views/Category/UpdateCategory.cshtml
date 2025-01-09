@@ -8,7 +8,7 @@
 <div class="container">
 	<br /><br />
 	<form method="post">
-		<input type="hidden" asp-for="CategoryId" />
+		<input type="hidden" asp-for="CategoryId" /> @* Hidden olduğunda görünmeyecek arka tarafta olacak ama kullanıcıya görünmeyecek *@
 		<label>Kategori Adı</label>
 		<input type="text" asp-for="CategoryName" class="form-control" />
 		<br />

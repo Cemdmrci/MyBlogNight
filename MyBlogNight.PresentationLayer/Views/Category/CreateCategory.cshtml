@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model Category //Viewımportsta tanımladığımızdan(entititylayer.concrete) uzun uzun yazmamıza gerek kalmıyor.
 
 @{
 	Layout = null;
@@ -10,6 +10,7 @@
 	<form method="post">
 		<label>Kategori Adı</label>
 		<input type="text" asp-for="CategoryName" class="form-control" />
+		<span class="text-danger" asp-validation-for="CategoryName"></span>
 		<br />
 		<button class="btn btn-primary">Kategori Ekle</button>
 	</form>

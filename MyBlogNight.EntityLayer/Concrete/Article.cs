@@ -14,10 +14,11 @@ namespace MyBlogNight.EntityLayer.Concrete
         public string CoverImageUrl { get; set; }
         public string MainImageUrl { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category Category { get; set; } //Burası veritabına yansımayacak bu ilişkideki bir boyutu için Burası sayesinde kategori sınıfına erişim sağlayabiliyorum.
         public int AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+        public AppUser AppUser { get; set; } //1-SpordaBugün-Yazar:@item.AppUser.Name bu name ulaşmak için lazım appuser
         public String Detail { get; set; }
         public int? ArticleViewCount { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

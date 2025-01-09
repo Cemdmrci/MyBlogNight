@@ -11,16 +11,16 @@ namespace MyBlogNight.BusinessLayer.Concrete
 {
 	public class CategoryManager : ICategoryService
 	{
-		private readonly ICategoryDal _categoryDal;
+		private readonly ICategoryDal _categoryDal;//Entitylerimizle ilişkili olan ınterface Icategorydalda bulunduğundan ıcategorydalı çağırdık.
 
 		public CategoryManager(ICategoryDal categoryDal)
 		{
 			_categoryDal = categoryDal;
 		}
 
-		public void TDelete(int id)
+		public void TDelete(int id) //Buradaki Tdelete businessden geliyor.
 		{
-			_categoryDal.Delete(id);
+			_categoryDal.Delete(id); //Buradaki delete dataaccesden geliyor.
 		}
 
 		public List<Category> TGetAll()

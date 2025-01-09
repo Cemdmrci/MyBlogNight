@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyBlogNight.DataAccessLayer.Repositories
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class
+    public class GenericRepository<T> : IGenericDal<T> where T : class//Dışarıdan bir T değeri alsın Igenericdaldan miras alsın bu T de bir class olsun
     {
         private readonly BlogContext _context; //oluşturmuş olduğum fieldıma(_context) sadece private reodonly üzerinden erişim sağlansın. 
 
