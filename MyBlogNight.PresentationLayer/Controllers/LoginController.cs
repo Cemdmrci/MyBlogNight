@@ -5,11 +5,11 @@ using MyBlogNight.PresentationLayer.Models;
 
 namespace MyBlogNight.PresentationLayer.Controllers
 {
-	public class Login : Controller
+	public class LoginController : Controller
 	{
 		private readonly SignInManager<AppUser> _signInManager;
 
-		public Login(SignInManager<AppUser> signInManager)
+		public LoginController(SignInManager<AppUser> signInManager)
 		{
 			_signInManager = signInManager;
 		}
