@@ -1,0 +1,85 @@
+﻿@model Article
+@{
+	ViewData["Title"] = "CreateArticle";
+	Layout = "~/Areas/Author/Views/Shared/_WriterLayout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+	body {
+		background-color: #f4f4f9;
+	}
+
+	.form-container {
+		background: #fff;
+		padding: 30px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	h1 {
+		font-size: 2rem;
+		color: #333;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	label {
+		font-weight: bold;
+		color: #555;
+	}
+
+	.form-control {
+		border-radius: 8px;
+	}
+
+	.btn-primary {
+		background: #007bff;
+		border: none;
+		border-radius: 8px;
+		padding: 10px 20px;
+		transition: background 0.3s ease;
+	}
+
+		.btn-primary:hover {
+			background: #0056b3;
+		}
+</style>
+
+<div class="container mt-5">
+	<div class="form-container">
+		<h1>Yeni Blog Ekle</h1>
+		<form method="post">
+			<div class="mb-4">
+				<label for="Title">Başlık</label>
+				<input type="text" asp-for="Title" class="form-control" placeholder="Başlığı buraya yazınız" />
+			</div>
+
+			<div class="mb-4">
+				<label for="CoverImageUrl">Küçük Kapak Fotoğrafı</label>
+				<input type="text" asp-for="CoverImageUrl" class="form-control" placeholder="Kapak fotoğrafı URL'si" />
+			</div>
+
+			<div class="mb-4">
+				<label for="MainImageUrl">Ana Kapak Fotoğrafı</label>
+				<input type="text" asp-for="MainImageUrl" class="form-control" placeholder="Ana kapak fotoğrafı URL'si" />
+			</div>
+
+			<div class="mb-4">
+				<label for="Detail">Makale Metni</label>
+				@Html.TextAreaFor(x => x.Detail, new { @class = "form-control", rows = "6", placeholder = "Makale metnini buraya yazınız" })
+			</div>
+			<div class="mb-4">
+				<label for="CreatedDate">Tarih</label>
+				<input type="text" asp-for="CreatedDate" class="form-control" placeholder="Tarihi Giriniz..." />
+			</div>
+			<div class="mb-4">
+				<label for="Category">Kategori</label>
+				@Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+			</div>
+
+			<button type="submit" class="btn btn-primary w-100">Blog Ekle</button>
+		</form>
+	</div>
+</div>

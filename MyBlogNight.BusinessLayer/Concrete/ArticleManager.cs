@@ -2,6 +2,7 @@
 using MyBlogNight.DataAccessLayer.Abstract;
 using MyBlogNight.DataAccessLayer.EntityFramework;
 using MyBlogNight.EntityLayer.Concrete;
+using MyBlogNight.EntityLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,21 @@ namespace MyBlogNight.BusinessLayer.Concrete
         public List<Article> TGetArticlesByAppUserId(int id)
         {
             return _articleDal.GetArticlesByAppUserId(id);
+        }
+
+		public Article TGetLastArticle()
+		{
+			return _articleDal.GetLastArticle();
+		}
+
+        public List<Article> TGetLastThreeArticles()
+        {
+            return _articleDal.GetLastThreeArticles();
+        }
+
+        public List<CategoryArticleCountViewModel> TCategoryCountArticle()
+        {
+            return _articleDal.CategoryCountArticle();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model NewsLetter
+﻿@using System.Web
+@model NewsLetter
 
 <div class="widget-no-style">
     <div class="newsletter-widget text-center align-self-center">
@@ -10,3 +11,14 @@
         </form>
     </div>
 </div>
+@if (TempData["NewsletterMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            title: 'İşlem Tamamlandı!',
+            text: '@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData["NewsletterMessage"]?.ToString()))',
+            icon: 'success',
+            confirmButtonText: 'Tamam'
+        });
+    </script>
+}

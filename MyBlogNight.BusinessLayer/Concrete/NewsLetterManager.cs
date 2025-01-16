@@ -11,7 +11,7 @@ namespace MyBlogNight.BusinessLayer.Concrete
 {
     public class NewsLetterManager : INewsLetterService
     {
-        INewsLetterDal _newsLetterDal;
+        private readonly INewsLetterDal _newsLetterDal;
 
         public NewsLetterManager(INewsLetterDal newsLetterDal)
         {

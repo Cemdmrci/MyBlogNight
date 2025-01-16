@@ -1,4 +1,5 @@
 ﻿using MyBlogNight.EntityLayer.Concrete;
+using MyBlogNight.EntityLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace MyBlogNight.BusinessLayer.Abstract
         public Article TArticleListWithCategoryAndAppUserByArticleId(int id);
         public void TArticleViewCountIncrease(int id);
         public List<Article> TGetArticlesByAppUserId(int id);
+        public Article TGetLastArticle();
+        public List<Article> TGetLastThreeArticles();
+        List<CategoryArticleCountViewModel> TCategoryCountArticle();
     }
 }

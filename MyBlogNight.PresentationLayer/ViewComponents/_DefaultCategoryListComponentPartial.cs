@@ -6,15 +6,17 @@ namespace MyBlogNight.PresentationLayer.ViewComponents
     public class _DefaultCategoryListComponentPartial : ViewComponent
     {
         private readonly ICategoryService _categoryService;
+        private readonly IArticleService _articleService;
 
-        public _DefaultCategoryListComponentPartial(ICategoryService categoryService)
+        public _DefaultCategoryListComponentPartial(ICategoryService categoryService, IArticleService articleService)
         {
             _categoryService = categoryService;
+            _articleService = articleService;
         }
         public IViewComponentResult Invoke()
         {
-            var categories = _categoryService.TGetAll();
-            return View(categories);
+            var values = _articleService.TCategoryCountArticle();
+            return View(values);
         }
     }
 }

@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBlogNight.BusinessLayer.Abstract;
 
 namespace MyBlogNight.PresentationLayer.ViewComponents
 {
 	public class _DefaultBannerComponentPartial : ViewComponent
 	{
-		public IViewComponentResult Invoke()
+		private readonly IArticleService _articleService;
+
+        public _DefaultBannerComponentPartial(IArticleService articleService)
+        {
+            _articleService = articleService;
+        }
+
+        public IViewComponentResult Invoke()
 		{
-			return View();
+			var value = _articleService.TGetLastArticle();
+			return View(value);
 		}
 	}
 }

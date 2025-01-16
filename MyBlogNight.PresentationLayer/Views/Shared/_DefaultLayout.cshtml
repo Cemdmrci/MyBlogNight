@@ -8,16 +8,13 @@
 		<header class="market-header header">
 			<div class="container-fluid">
 				@await Component.InvokeAsync("_DefaultNavbarComponentPartial")
-
-				@await Component.InvokeAsync("_DefaultBannerComponentPartial")
-
-			     @await Component.InvokeAsync("_DefaultSocialMediaComponentPartial")
-
-			     @await Component.InvokeAsync("_CommentListByArticleIdComponentPartial")
- 
-				@await Component.InvokeAsync("_DefaultFooterComponentPartial")
-				
-				@await Component.InvokeAsync("_DefaultScriptComponentPartial")
+			</div>
+		</header>
+		@RenderBody()
+		@await Component.InvokeAsync("_DefaultFooterComponentPartial")
+		<div class="dmtop"></div>
+	</div>
+	@await Component.InvokeAsync("_DefaultScriptComponentPartial")
 </body>
-			
+
 

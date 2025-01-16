@@ -1,0 +1,44 @@
+﻿@model Article
+
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Areas/Author/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="form-container">
+        <h1>Blog Güncelleme Sayfası</h1>
+        <form method="post">
+            <div class="mb-4">
+                <label for="Title">Başlık</label>
+                <input type="hidden" asp-for="ArticleId"/>
+                <input type="text" asp-for="Title" class="form-control" placeholder="Başlığı buraya yazınız" />
+            </div>
+
+            <div class="mb-4">
+                <label for="CoverImageUrl">Küçük Kapak Fotoğrafı</label>
+                <input type="text" asp-for="CoverImageUrl" class="form-control" placeholder="Kapak fotoğrafı URL'si" />
+            </div>
+
+            <div class="mb-4">
+                <label for="MainImageUrl">Ana Kapak Fotoğrafı</label>
+                <input type="text" asp-for="MainImageUrl" class="form-control" placeholder="Ana kapak fotoğrafı URL'si" />
+            </div>
+
+            <div class="mb-4">
+                <label for="Detail">Makale Metni</label>
+                @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", rows = "6", placeholder = "Makale metnini buraya yazınız" })
+            </div>
+            <div class="mb-4">
+                <label for="CreatedDate">Tarihi Düzenleme</label>
+                <input type="text" asp-for="CreatedDate" class="form-control" placeholder="Tarihi Düzeltiniz..." />
+            </div>
+            <div class="mb-4">
+                <label for="Category">Kategori</label>
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+            </div>
+
+            <button class="btn btn-success">Güncelle</button>
+        </form>
+    </div>
+</div>

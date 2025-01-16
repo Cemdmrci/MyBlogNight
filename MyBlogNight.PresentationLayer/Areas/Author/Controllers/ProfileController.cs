@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBlogNight.EntityLayer.Concrete;
 using MyBlogNight.PresentationLayer.Areas.Author.Models;
@@ -41,6 +42,14 @@ namespace MyBlogNight.PresentationLayer.Areas.Author.Controllers
                 return RedirectToAction("CategoryList", "Category"/*, new { Area = "AreaAdı" }*/);//areaya gitmek istersek yaparız.
             }
             return View();
+        }
+        public async Task<IActionResult>LogOut()
+        {
+            // Oturumdan çıkış yap
+            await HttpContext.SignOutAsync();
+            // Kullanıcıyı bir sayfaya yönlendir (örneğin, giriş sayfası veya ana sayfa)
+            return RedirectToAction("Index", "Login");
+
         }
     }
 }

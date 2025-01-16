@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Author/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+<div class="dashboard-container">
+    <!-- Articles Card -->
+    <div class="card">
+        <div class="icon-container">
+            <i class="fas fa-newspaper"></i>
+        </div>
+        <h3>My Articles</h3>
+        <p>Total Articles: <strong>@ViewBag.ArticlesCount</strong></p>
+    </div>
+
+    <!-- Comments Card -->
+    <div class="card">
+        <div class="icon-container">
+            <i class="fas fa-comments"></i>
+        </div>
+        <h3>My Comments</h3>
+        <p>Total Comments: <strong>@ViewBag.CommentCount</strong></p>
+    </div>
+
+    <!-- Last Article Card -->
+    <div class="card">
+        <div class="icon-container">
+            <i class="fas fa-pen-alt"></i>
+        </div>
+        <h3>Last Article</h3>
+        <p>Title: <strong>@ViewBag.NameOfMyLastArticle</strong></p>
+        <p>Category: <strong>@ViewBag.CategoryOfArticle</strong></p>
+    </div>
+</div>
+
+<!-- Adding FontAwesome icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-title {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 30px;
+        color: #333;
+    }
+
+    .dashboard-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 12px;
+        width: 250px;
+        padding: 20px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+    .icon-container {
+        font-size: 50px;
+        color: #4CAF50;
+        margin-bottom: 20px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .card p {
+        font-size: 16px;
+        color: #555;
+    }
+
+        .card p strong {
+            color: #333;
+        }
+</style>
+
+

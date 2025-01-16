@@ -3,6 +3,7 @@ using MyBlogNight.DataAccessLayer.Abstract;
 using MyBlogNight.DataAccessLayer.Context;
 using MyBlogNight.DataAccessLayer.Repositories;
 using MyBlogNight.EntityLayer.Concrete;
+using MyBlogNight.EntityLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,11 +47,36 @@ namespace MyBlogNight.DataAccessLayer.EntityFramework
             context.SaveChanges();
         }
 
+        public List<CategoryArticleCountViewModel> CategoryCountArticle()
+        {
+            var context = new BlogContext();
+            return context.Articles.GroupBy(x => new { x.CategoryId, x.Category.CategoryName }).Select(a => new CategoryArticleCountViewModel //GroupBy metodu, Articles tablosundaki verileri CategoryId ve CategoryName (Kategori Kimliği ve Adı) alanlarına göre gruplar.CategoryArticleCountViewModel adında bir modele aktarılır
+            {
+                CategoryId = a.Key.CategoryId,//a.Key: Grup anahtarını ifade eder (CategoryId ve CategoryName).
+                CategoryName = a.Key.CategoryName,//a.Count(): Grup içindeki elemanların sayısını döner. Bu, her kategorideki makale sayısını hesaplar.
+                ArticleCount = a.Count()
+            }).OrderByDescending(x => x.ArticleCount).ToList();
+        }
         public List<Article> GetArticlesByAppUserId(int id)
         {
             var context=new BlogContext();
             var values=context.Articles.Where(x=>x.AppUserId==id).ToList();
             return values;
+        }
+
+		public Article GetLastArticle()
+		{
+			var context = new BlogContext();
+            var value = context.Articles.OrderByDescending(x => x.ArticleId).Take(1).FirstOrDefault();
+            return value;
+		}
+
+        public List<Article> GetLastThreeArticles()
+        {
+           var context=new BlogContext();
+            var values = context.Articles.OrderByDescending(x => x.ArticleId).Take(3).ToList();
+            return values;
+
         }
     }
 }

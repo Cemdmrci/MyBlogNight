@@ -1,48 +1,66 @@
-﻿﻿
-﻿@{
-    Layout = null;
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Article>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_DefaultLayout.cshtml";   
 }
 
-<!DOCTYPE html>
-<html lang="en">
+@await Component.InvokeAsync("_DefaultBannerComponentPartial")
 
-@await Component.InvokeAsync("_DefaultHeadComponentPartial")
-
-<body>
-    <div class="container mt-4">
+<section class="section lb">
+    <div class="container">
         <div class="row">
-            <!-- Blog Listesi -->
-            @await Component.InvokeAsync("_DefaultArticleListComponentPartial")
-
-            <!-- Sağ Taraf -->
-            <div class="col-lg-4">
-                <!-- Kategoriler -->
-                @await Component.InvokeAsync("_DefaultCategoryListComponentPartial")
-
-                <!-- Sosyal Medya -->
-                @await Component.InvokeAsync("_DefaultSocialMediaComponentPartial")
-                <!-- Öne Çıkan Bloglar -->
-                <div class="mb-4">
-                    <h4>Öne Çıkan Bloglar</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#">Öne Çıkan Blog 1</a></li>
-                        <li class="list-group-item"><a href="#">Öne Çıkan Blog 2</a></li>
-                        <li class="list-group-item"><a href="#">Öne Çıkan Blog 3</a></li>
-                    </ul>
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    @foreach (var item in Model)
+                    {
+                        <div class="blog-custom-build">
+                            <div class="blog-box wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                                <div class="post-media">
+                                    <a href="/Article/ArticleDetail/@item.ArticleId" title="">
+                                        <img src="@item.MainImageUrl" alt="" class="img-fluid">
+                                        <div class="hovereffect">
+                                            <span></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="blog-meta big-meta text-center">
+                                    <h4><a href="/Article/ArticleDetail/@item.ArticleId" title="">@item.Title</a></h4>
+                                    <p>@item.Detail.Substring(0, 180)...</p>
+                                    <small><a href="#" title="">@item.Category.CategoryName</a></small>
+                                    <small><a href="#" title="">@item.CreatedDate.ToString("dd.MM.yyyy")</a></small>
+                                    <small><a href="#" title="">@item.AppUser.Name @item.AppUser.Surname </a></small>
+                                    <small><a href="#" title=""><i class="fa fa-eye"></i> @item.ArticleViewCount</a></small>
+                                </div>
+                            </div>
+                            <hr class="invis">
+                        </div>
+                    }
                 </div>
-                <!-- Yazarlar -->
-                <div class="mb-4">
-                    <h4>Yazarlar</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">Ahmet Yılmaz</li>
-                        <li class="list-group-item">Mehmet Kaya</li>
-                        <li class="list-group-item">Elif Demir</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+                <hr class="invis">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                       {
+                           LiElementClasses = new[] { "page-item" },
+                           PageClasses = new[] { "page-link" },
+                           UlElementClasses = new[] { "pagination", "justify-content-center" }
+                       })
+						</nav>
+					</div><!-- end col -->
+				</div><!-- end row -->
+			</div><!-- end row -->
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+				<div class="sidebar">
+					@await Component.InvokeAsync("_DefaultLast3ArticlesComponentPartial")
+					@await Component.InvokeAsync("_DefaultCategoryListComponentPartial")
+				</div>
+			</div><!-- end widget -->
+		</div><!-- end container -->
+</section>
+</style>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+}
